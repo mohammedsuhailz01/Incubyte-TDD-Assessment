@@ -12,4 +12,9 @@ public class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         assertEquals(1, calc.add("1"));
     }
+    @Test
+    public void testMultipleNumbers() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(10, calc.add("1,2,3,4"));
+    }
 }
