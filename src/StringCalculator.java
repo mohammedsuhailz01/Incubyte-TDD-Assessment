@@ -15,9 +15,24 @@ public class StringCalculator {
         // Split the numbers by delimiter and calculate the sum
         String[] nums = numbers.split("[" + delimiter + "\n]");
         int sum = 0;
+        StringBuilder negativeNumbers = new StringBuilder(); // To collect negative numbers
+
         for (String num : nums) {
-            sum += Integer.parseInt(num.trim()); // Trim whitespace before parsing
+            int parsedNum = Integer.parseInt(num.trim()); // Trim whitespace before parsing
+            if (parsedNum < 0) {
+                if (negativeNumbers.length() > 0) {
+                    negativeNumbers.append(",");
+                }
+                negativeNumbers.append(parsedNum);
+            }
+            sum += parsedNum;
         }
+
+        // Throw exception if negative numbers are found
+        if (negativeNumbers.length() > 0) {
+            throw new IllegalArgumentException("Negative numbers not allowed: " + negativeNumbers);
+        }
+
         return sum;
     }
 }
