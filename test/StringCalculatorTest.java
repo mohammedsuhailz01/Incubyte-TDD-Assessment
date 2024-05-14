@@ -27,4 +27,10 @@ public class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         assertEquals(3, calc.add("//;\n1;2"));
     }
+    @Test
+    public void testNegativeNumbers() {
+        StringCalculator calc = new StringCalculator();
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> calc.add("1,-2,3,-4"));
+        assertEquals("Negative numbers not allowed: -2,-4", exception.getMessage());
+    }
 }
